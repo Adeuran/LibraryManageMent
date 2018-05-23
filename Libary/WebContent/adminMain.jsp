@@ -12,15 +12,7 @@
         </title>
     </head>
     <body>
-    <header id="head">
-        <a href="./index.html"><img src="./img/logo.jpg"></a>
-        <nav>
-            <ul>
-                <a href="./user.html"><li>회원 관리</li></a>
-                <a href="./book.html"><li>도서 관리</li></a>
-            </ul>
-        </nav>
-    </header>
+    <%@ include file="./elements/adminNav.jsp" %>
     <aside>
         <div id="black"></div>
         <div id="asideMent">
@@ -55,11 +47,7 @@
             </article>
         </article>
     </section>
-    <footer>
-        <div class="copy">
-            Copyright ⓒ <span id="name">허현범, 박한수</span> All Rights Reserved
-        </div>
-    </footer>
+    <%@ include file="./elements/footer.jsp" %>
     <script>
         var Button = false;
 

@@ -12,15 +12,7 @@
         </title>
     </head>
     <body>
-        <header id="head">
-                <a href="./index.html"><img src="./img/logo.jpg"></a>
-                <nav>
-                    <ul>
-                        <a href="./user.html"><li>회원 관리</li></a>
-                        <a href="./book.html"><li>도서 관리</li></a>
-                    </ul>
-                </nav>
-        </header>
+        <%@ include file="./elements/adminNav.jsp" %>
         <section>
             <h2>도서 관리</h2>
             <form action = "#">
