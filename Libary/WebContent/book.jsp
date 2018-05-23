@@ -1,6 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
-    <head>
+   <head>
          <meta charset = "utf-8">
          <link rel="stylesheet" type="text/css" href="./css/common.css">
          <link rel="stylesheet" type="text/css" href="./css/book.css">
@@ -55,22 +57,6 @@
                 </tfoot>
             </table>
         </section>
-        <footer>
-            <div class = "copy">
-                Copyright ⓒ <span id = "name">허현범, 박한수</span> All Rights Reserved
-            </div>
-        </footer>
-        <script>
-            /*$(".button").hover(
-                function(){$(this).css("background-color","blue");},
-                function(){$(this).css("background-color","#ff3300");}
-                );
-            $("#search input[type = image]").hover(
-            function(){$(this).css("background-color","blue");},
-            function(){$(this).css("background-color","none");}
-                ); */   
-
-        </script>
-
+		<%@ include file="./footer.jsp" %>
     </body>
 </html>
