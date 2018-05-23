@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
     <head>
@@ -57,11 +59,7 @@
             </div>
            </div>
         </section>
-        <footer>
-                <div class="copy">
-                    Copyright ⓒ <span id="name">허현범, 박한수</span> All Rights Reserved
-                </div>
-        </footer>
+        <%@ include file="./elements/footer.jsp" %>
         <script>
             check = function(){
                 var pw = document.getElementById("pw").value;

@@ -57,6 +57,6 @@
                 </tfoot>
             </table>
         </section>
-		<%@ include file="./footer.jsp" %>
+		<%@ include file="./elements/footer.jsp" %>
     </body>
 </html>
