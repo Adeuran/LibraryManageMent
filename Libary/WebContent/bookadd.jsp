@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
             <meta charset = "utf-8">
@@ -8,15 +10,7 @@
             <title>책 추가 | 도서관리 페이지</title>
     </head>
     <body>
-        <header id="head">
-            <a href="./index.html"><img src="./img/logo.jpg"></a>
-                <nav>
-                    <ul>
-                        <a href="./user.html"><li>회원 관리</li></a>
-                        <a href="./book.html"><li>도서 관리</li></a>
-                    </ul>
-                </nav>
-        </header>
+       <%@ include file="./elements/adminNav.jsp" %>
         <section>
             <form>
                 <div id = "content">
@@ -56,10 +50,6 @@
                 </div>
             </form>
         </section>
-        <footer>
-            <div class = "copy">
-                Copyright ⓒ <span id="name">허현범, 박한수</span> All Rights Reserved
-            </div>
-        </footer>
+        <%@ include file="./elements/footer.jsp" %>
     </body>
 </html>
