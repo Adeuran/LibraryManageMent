@@ -117,9 +117,7 @@
                     <tr>
                         <td colspan="6">
                             <div id = "lastline">
-                                <div class="button">
-                                    <a href="./useradd.html">회원 추가</a>
-                                </div>
+                            	<a class="button" href="./useradd.jsp">회원 추가</a>
                             </div>
                         </td>
                     </tr>

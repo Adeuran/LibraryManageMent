@@ -41,9 +41,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="7">
-                            <div class = "button">
-                                <a href = "./bookadd.html">책 추가</a>
-                            </div>
+                        	<a class = "button" href = "./bookadd.jsp">책 추가</a>
                         </td>
                     </tr>
                 </tfoot>

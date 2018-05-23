@@ -30,7 +30,7 @@
     <section>
         <article id="memberManager"> <!-- 회원관리, 도서관리-->
            <div id="selectMenu">
-                <a href="user.html">
+                <a href="user.jsp">
                     <div class="select">
                         <img src = "./img/index_person.png">
                         <figcaption>회원 관리</figcaption>
@@ -38,7 +38,7 @@
                 </a>
             </article>
             <article>
-                 <a href = "book.html">
+                 <a href = "book.jsp">
                     <div class="select">
                         <img src = "./img/index_library.png">
                         <figcaption>도서 관리</figcaption>
