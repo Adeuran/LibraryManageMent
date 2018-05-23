@@ -1,0 +1,72 @@
+section{
+    padding : 10em 0;
+    width : 750px;
+    margin : 0 auto;
+    margin-bottom : 20px;
+    background-color : #fff;
+    text-align: center; 
+}
+#content .div_1{
+    display : inline-block;
+    margin-left : 30px;
+}
+
+#content .div_1 img{
+    width : 248px;
+    height : 320px;
+    background-size : cover;
+}
+.div_1 div{
+    margin-bottom : 20px;
+} 
+.div_1 input{
+    border : 0px;
+    border-bottom : 1px solid gray;
+    width : 400px;
+    height : 40px;
+    font-size : 2em;
+}
+.div{
+    text-align : left;
+    padding-left : 20px;
+    line-height : 20px;
+}
+
+.div span{
+    display : block;
+}
+
+#buttons div{
+    display : inline-block;
+    margin-top : 20px;
+}
+
+#buttons input{
+    width : 81px;
+    height: 50px;
+    font-size : 1.2em;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    border : 0px;
+    margin-left : 20px;
+}
+#resetButton {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    background-color: rgb(221, 221, 221);
+    color: black;
+}
+#addButton {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    background-color: #F44336;
+    color: white;
+}
+#img{
+    width : 250px;
+    height : 250px;
+}
+footer{
+    bottom: 0;
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}

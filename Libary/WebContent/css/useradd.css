@@ -1,0 +1,89 @@
+body {
+    background-color: #EEEEEE;
+    height: 100%;
+}
+section {
+    padding : 63px 0;
+}
+.card {
+    margin : 0 auto;
+    padding: 20px;
+    width : 800px;
+    height: 430px;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    background-color: white;
+}
+section div,form{
+    display: inline-block;
+}
+input {
+    border : none;
+    font-size: 1.2em;
+    border-bottom : 1px solid gray;
+}
+/*form tg css*/
+form {
+    width : 450px;
+    margin : 0 0 30px 30px;
+}
+section h2{
+    padding-left : 30px;
+}
+.half input{
+    width : 150px;
+}
+.inputBox {
+    margin-top: 17px;
+}
+form span{
+    font-size : 10px;
+    display: block;
+}
+input[type = "text"], input[type = "email"], input[type = "tel"]{
+    width : 305px;
+} 
+/*form tg css end*/
+/*img tg css*/
+.img_right {
+    float: right;
+}
+#img{
+    width : 250px;
+    height : 250px;
+    border-radius: 100%;
+    margin-right: 70px;
+}
+#buttonDiv {
+    margin-top: 1em;
+    display: block;
+    text-align: right;
+}
+#resetButton {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    background-color: rgb(221, 221, 221);
+}
+#addButton {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    background-color: #4285f4;
+    color: white;
+}
+#buttonDiv input {
+    margin:0 5px;
+    height: 37px;
+    width: 60px; 
+}
+/*img tg css end*/
+footer{
+    border-top: none;
+    bottom: 0;
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+.copy {
+    font-size: 1em;
+}
