@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.library.memberVo.MemberVO;
 
@@ -24,7 +25,7 @@ public class MemberDao {
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/model";
+			String url = "jdbc:mysql://localhost:3306/library";
 			String user = "root";
 			String pwd = "cs1234";
 			conn = DriverManager.getConnection(url,user,pwd);
@@ -69,8 +70,10 @@ public class MemberDao {
 		{
 			
 			conn = connect();
-			psmt = conn.prepareStatement("insert into post values(?,?,?,?,?)");
+			psmt = conn.prepareStatement("insert into member values(?,?,?,?,?)");
 			// name /  email / address / phone / pwd
+			ArrayList<MemberVO> list = memberList();
+			
 			psmt.setString(1,member.getName());
 			psmt.setString(2, member.getEmail());
 			psmt.setString(3, member.getAddress());
@@ -97,7 +100,7 @@ public class MemberDao {
 		try
 		{
 			conn = connect();
-			psmt = conn.prepareStatement("select * from post where id = ?");
+			psmt = conn.prepareStatement("select * from member where id = ?");
 			psmt.setString(1,id);
 			rs = psmt.executeQuery();
 			while(rs.next())
@@ -125,7 +128,7 @@ public class MemberDao {
 		try
 		{
 			conn = connect();
-			psmt = conn.prepareStatement("update post set name = ?, address = ?, phone = ?, pw = ? where email = ?");
+			psmt = conn.prepareStatement("update member set name = ?, address = ?, phone = ?, pw = ? where email = ?");
 			// name /  email / address / phone / pw
 			psmt.setString(1,member.getName());
 			psmt.setString(2, member.getAddress());
@@ -151,7 +154,7 @@ public class MemberDao {
 		try
 		{
 			conn = connect();
-			psmt = conn.prepareStatement("delete from post where num = ?");
+			psmt = conn.prepareStatement("delete from member where num = ?");
 			psmt.setInt(1,num);
 			psmt.executeUpdate();
 		}
@@ -165,6 +168,31 @@ public class MemberDao {
 		}
 	}
 	
-	public Arraylist<MemberVO> 
+	public ArrayList<MemberVO> memberList()
+	{
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		MemberVO member = null;
+		ResultSet rs = null;
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		
+		try 
+		{
+			conn = connect();
+			psmt = conn.prepareStatement("select * from member");
+			rs = psmt.executeQuery();
+			while(rs.next())
+			{
+				member = new MemberVO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+				list.add(member);
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println("memberlist 오류 발생 " + e);
+		}
+		return list;
+		
+	}
 	
 }
