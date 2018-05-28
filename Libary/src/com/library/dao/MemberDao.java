@@ -1,15 +1,16 @@
 package com.library.dao;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.library.memberVo.MemberVO;
+import java.sql.PreparedStatement;
 
 public class MemberDao {
-
+ 
+	private static boolean Idchk = false;
 	private static MemberDao dao = new MemberDao();
 	
 	private MemberDao() {}
@@ -62,10 +63,16 @@ public class MemberDao {
 			}
 		}
 	}
+	
+	public static boolean getIdchk()
+	{
+		return Idchk;
+	}
 	public void MemberInsert(MemberVO member)
 	{
 		Connection conn = null;
 		PreparedStatement psmt = null;
+		String id = member.getEmail();
 		try
 		{
 			
@@ -73,7 +80,16 @@ public class MemberDao {
 			psmt = conn.prepareStatement("insert into member values(?,?,?,?,?)");
 			// name /  email / address / phone / pwd
 			ArrayList<MemberVO> list = memberList();
-			
+			for(int i = 0; i < list.size() ; i++)
+			{
+				MemberVO IdchkMember = list.get(i);
+				if(id.equals(IdchkMember.getEmail()))
+				{
+					Idchk = true;
+					return;
+				}
+			}
+			Idchk = false;
 			psmt.setString(1,member.getName());
 			psmt.setString(2, member.getEmail());
 			psmt.setString(3, member.getAddress());

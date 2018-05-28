@@ -8,6 +8,10 @@ public class MemberService {
 	private static MemberService service = new MemberService();
 	private MemberService() {};
 	
+	public static MemberService serviceGetInstance()
+	{
+		return service;
+	}
 	MemberDao dao = MemberDao.getInstance();
 	
 	public void MemberInsert(MemberVO member)
