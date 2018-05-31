@@ -1,76 +1,89 @@
-aside {
-    background-image: url(../img/index_background.jpg);
-    background-size: cover;
-    box-shadow: 0 2px 5px rgba(0,0,0,.26);
-    height: 650px;
-    margin: -40px;
-    z-index: 0;
-    position:relative;
-}
-a {
-    text-decoration: none;
-    color: black;
-}
-#black {
-    z-index: -1;
-    background-color: rgba(0, 0, 0, 0.5);
-    position:absolute;
-    height:100%;
-    width:100%
-    
-}
-#asideMent{
-    color: white;
-    text-align: left;
-    margin-left: 20em;
-}
-h2 {
-    padding-top: 200px;
-    font-weight: normal;
-    font-size: 48px;
-}
-h3 {
-    font-weight: 200;
-    font-size: 36px;
-}
-
-#circleButton {
-    position: absolute;
-    background-color: #009688;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    z-index: 3;
-    left:50%;
-    transform:translateX(-50%);
-    box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24);
-}
-#circleButton:active {
-    background-color: #00675b;
-}
-#circleButton img {
-    width: 60px;
-    height: 60px;
-    position: absolute;
-    left:50%;
-    transform:translateX(-50%);
-    top: 15%;
-    transition: transform 1s;
+@charset "UTF-8";
+body {
+    background-color: #EEEEEE;
+    height: 100%;
 }
 section {
-    margin: 9em 0;
-    text-align: center;
+    padding : 63px 0;
 }
-article {
+.card {
+    margin : 0 auto;
+    padding: 20px;
+    width : 990px;
+    height: 430px;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    background-color: #FBFBFB;
+}
+section div,form{
     display: inline-block;
-    margin: 7em;
-    padding: 3em;
-    transition: background-color 0.5s ease;
 }
-article:active {
-    background-color: #E0E0E0;
+input {
+    border : none;
+    font-size: 1.2em;
+    border-bottom : 1px solid gray;
 }
-figcaption {
-    font-size: 2em;
-    font-weight: bold;
+#logo {
+    width: 30%;
+    display: block;
+    margin: 30px;
+}
+/*form tg css*/
+form {
+    width : 450px;
+    margin : 20px 0 30px 30px;
+}
+.half input{
+    width : 150px;
+}
+.inputBox {
+    margin-top: 17px;
+}
+form span{
+    font-size : 10px;
+    display: block;
+}
+input[type = "password"], input[type = "email"]{
+    width : 350px;
+    background-color: #FBFBFB;
+} 
+/*form tg css end*/
+/*img tg css*/
+#img{
+    height: 80%;
+    margin-top: -50px;
+    float: right;
+}
+#buttonDiv {
+    margin-top: 1em;
+    display: block;
+    text-align: right;
+}
+#resetButton {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    background-color: rgb(221, 221, 221);
+}
+#LoginButton {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    background-color: #4285f4;
+    color: white;
+}
+#buttonDiv input {
+    margin:0 5px;
+    height: 50px;
+    width: 90px; 
+}
+/*img tg css end*/
+footer{
+    border-top: none;
+    bottom: 0;
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+.copy {
+    font-size: 1em;
 }

@@ -77,7 +77,7 @@ public class MemberDao {
 		{
 			
 			conn = connect();
-			psmt = conn.prepareStatement("insert into member values(?,?,?,?,?)");
+			psmt = conn.prepareStatement("insert into member values(,?,?,?,?,?)");
 			// name /  email / address / phone / pwd
 			ArrayList<MemberVO> list = memberList();
 			for(int i = 0; i < list.size() ; i++)
@@ -137,20 +137,20 @@ public class MemberDao {
 		return member;
 	}
 	
-	public void MemberUpdate(MemberVO member)
+	public void MemberUpdate(MemberVO member,int num)
 	{
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		try
 		{
 			conn = connect();
-			psmt = conn.prepareStatement("update member set name = ?, address = ?, phone = ?, pw = ? where email = ?");
+			psmt = conn.prepareStatement("update member set name = ?, address = ?, phone = ?, pw = ? where num = ?");
 			// name /  email / address / phone / pw
 			psmt.setString(1,member.getName());
 			psmt.setString(2, member.getAddress());
 			psmt.setString(3, member.getPhone());
 			psmt.setString(4, member.getPwd());
-			psmt.setString(5, member.getEmail());
+			psmt.setInt(5, num);
 			psmt.executeUpdate();
 		}
 		catch(Exception e)
@@ -209,6 +209,29 @@ public class MemberDao {
 		}
 		return list;
 		
+	}
+	
+	public String MemberLoginProcess(String id)
+	{
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		String pw = null;
+		try
+		{
+			psmt = conn.prepareStatement("select pw from member where id = ?");
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			while(rs.next())
+			{
+				pw = rs.getString(1);
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println("exception 발생 : " + e);
+		}
+		return pw;
 	}
 	
 }

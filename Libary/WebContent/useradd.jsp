@@ -25,11 +25,11 @@
                     </div>
                     <div class="inputBox">
                         <span>주소</span>
-                        <input type = "text" name = "text" id = "text" placeholder="주소">
+                        <input type = "text" name = "address" id = "text" placeholder="주소">
                     </div>
                     <div class="inputBox">
                         <span>전화번호</span>
-                        <input type = "tel" name = "e-mail" id = "phone" placeholder="전화번호">
+                        <input type = "tel" name = "phone" id = "phone" placeholder="전화번호">
                     </div>
                     <div class="inputBox half">
                         <div>

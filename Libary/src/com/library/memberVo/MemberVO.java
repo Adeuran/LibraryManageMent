@@ -9,7 +9,12 @@ public class MemberVO {
 	private String pwd;
 	private int num;
 	
-	public MemberVO(String name,String email,String address, String phone, String pwd)
+	public MemberVO()
+	{
+		
+	}	
+	
+	public MemberVO(String name, String email, String address, String phone, String pwd)
 	{
 		this.name = name;
 		this.email = email;
@@ -17,7 +22,27 @@ public class MemberVO {
 		this.phone = phone;
 		this.pwd = pwd;
 	}
-	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
 	public String getName()
 	{
 		return name;

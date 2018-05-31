@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.library.HttpUtil.HttpUtil;
 import com.library.dao.MemberDao;
 import com.library.memberVo.MemberVO;
 import com.library.service.MemberService;

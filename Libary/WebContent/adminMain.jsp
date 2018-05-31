@@ -5,7 +5,7 @@
     <head>
         <meta charset = "utf-8">
         <link rel="stylesheet" type="text/css" href="./css/common.css">
-        <link rel="stylesheet" type="text/css" href="./css/index.css">
+        <link rel="stylesheet" type="text/css" href="./css/adminMain.css">
         <script src="./js/jquery.js"></script>
         <title>
             도서관리 메인 | 도서관리 페이지

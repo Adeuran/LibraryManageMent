@@ -12,15 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.library.controller.Controller;
 
 public class FrontController extends HttpServlet{
-
+	String adminId;
+	String adminPw;
+	
 	HashMap<String,Controller> list = null;
 	public void init(ServletConfig config) throws ServletException
 	{
+		adminId = config.getInitParameter("adminId");
+		adminPw = config.getInitParameter("adminPw");
 		list.put("/memberInsert.do",new MemberInsertController());
 		list.put("/memberSearch.do",new MemberSearchController());
 		list.put("/memberUpdate.do",new MemberUpdateController());
 		list.put("/memberDelete.do",new MemberDeleteController());
-		//list.put("/memberList.do",new MemberListController());
+		list.put("/memberLoginProcess.do",new MemberLoginProcessController());
 	}
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -29,6 +33,8 @@ public class FrontController extends HttpServlet{
 		String contextPath = request.getContextPath();
 		String path = url.substring(contextPath.length()); 
 		Controller subController = list.get(path);
+		request.setAttribute("adminId", adminId);
+		request.setAttribute("adminPw", adminPw);
 		subController.execute(request, response);
 	}
 }
