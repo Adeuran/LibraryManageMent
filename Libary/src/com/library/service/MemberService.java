@@ -2,8 +2,8 @@ package com.library.service;
 
 import java.util.ArrayList;
 
+import com.library.Vo.MemberVO;
 import com.library.dao.MemberDao;
-import com.library.memberVo.MemberVO;
 
 public class MemberService {
 
@@ -22,6 +22,12 @@ public class MemberService {
 	
 	public MemberVO MemberSearch(String id)
 	{
+		if(dao.MemberSearch(id) != null)
+			System.out.println((dao.MemberSearch(id)).getAddress());
+		else
+		{
+			System.out.println("회원 존재 x");
+		}
 		return dao.MemberSearch(id);
 	}
 	public void MemberUpdate(MemberVO member,int num)

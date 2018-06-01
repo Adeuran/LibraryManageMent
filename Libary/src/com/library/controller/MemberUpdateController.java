@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.library.memberVo.MemberVO;
+import com.library.Vo.MemberVO;
 import com.library.service.MemberService;
 
 public class MemberUpdateController implements Controller{

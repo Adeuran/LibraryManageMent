@@ -32,11 +32,17 @@
                     <th></th>
                 </thead>
                 <tbody>
-                   <tr><td>한수와 친구들</td><td>호러물</td><td>한수</td><td>한수사</td><td>한수년</td><td><button type = "button">수정</button></td><td><button type = "button">삭제</button></td></tr>
-                   <tr><td>한수와 친구들</td><td>호러물</td><td>한수</td><td>한수사</td><td>한수년</td><td><button type = "button">수정</button></td><td><button type = "button">삭제</button></td></tr>
-                   <tr><td>한수와 친구들</td><td>호러물</td><td>한수</td><td>한수사</td><td>한수년</td><td><button type = "button">수정</button></td><td><button type = "button">삭제</button></td></tr>
-                   <tr><td>한수와 친구들</td><td>호러물</td><td>한수</td><td>한수사</td><td>한수년</td><td><button type = "button">수정</button></td><td><button type = "button">삭제</button></td></tr>
-                   <tr><td>한수와 친구들</td><td>호러물</td><td>한수</td><td>한수사</td><td>한수년</td><td><button type = "button">수정</button></td><td><button type = "button">삭제</button></td></tr>
+                <%%>
+					<tr>
+						<td>한수와 친구들</td>
+						<td>호러물</td>
+						<td>한수</td>
+						<td>한수사</td>
+						<td>한수년</td>
+						<td><button type = "button">수정</button></td>
+						<td><button type = "button">삭제</button></td>
+					</tr>
+					<%%>
                 </tbody>
                 <tfoot>
                     <tr>

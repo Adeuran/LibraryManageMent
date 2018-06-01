@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.library.service.*" %>
+<%@ page import="com.library.Vo.*" %>
 <!doctype html>
 <html>
     <head>
@@ -13,6 +17,10 @@
     </head>
     <body>
         <%@ include file="./elements/adminNav.jsp" %>
+        <%
+        MemberService service = MemberService.serviceGetInstance();
+        ArrayList <MemberVO> rs = service.getList();
+        %>
         <section>
            <div class="center">
                <h1>회원 관리</h1>
@@ -24,7 +32,7 @@
             </form>
             <table>
                 <thead>
-                    <th>ID</th>
+                    <th>E-mail</th>
                     <th>NAME</th>
                     <th>ADDRESS</th>
                     <th>H.P</th>
@@ -32,86 +40,28 @@
                     <th></th>
                 </thead>
                 <tbody>
+                <%
+                for(MemberVO mem : rs) {
+                %>
                    <tr>
-                        <td>23423@yi.ac.kr</td>
-                        <td>허현범</td>
-                        <td>경기도 수원시 도리도리3동 93-23 203호</td>
-                        <td>010-3242-3242</td>
-                        <td><button type = "button">수정</button></td>
-                        <td><button type = "button">삭제</button></td>
+                        <td><%=mem.getEmail() %></td>
+                        <td><%=mem.getName() %></td>
+                        <td><%=mem.getAddress() %></td>
+                        <td><%=mem.getPhone() %></td>
+                        <td>
+                        	<form action="memberUpdate.do" method="get">
+                        		<input type="hidden" name="num" value="<%=mem.getNum() %>">
+   								<input type="submit" value="수정">
+							</form>
+						</td>
+                        <td>
+                        	<form action="memberDelete.do" method="get">
+                        		<input type="hidden" name="num" value="<%=mem.getNum() %>">
+   								<input type="submit" value="삭제">
+							</form>
+                        </td>
                    </tr>
-                   <tr>
-                        <td>23423@yi.ac.kr</td>
-                        <td>허현범</td>
-                        <td>경기도 수원시 도리도리3동 93-23 203호</td>
-                        <td>010-3242-3242</td>
-                        <td><button type = "button">수정</button></td>
-                        <td><button type = "button">삭제</button></td>
-                   </tr>
-                   <tr>
-                        <td>23423@yi.ac.kr</td>
-                        <td>허현범</td>
-                        <td>경기도 수원시 도리도리3동 93-23 203호</td>
-                        <td>010-3242-3242</td>
-                        <td><button type = "button">수정</button></td>
-                        <td><button type = "button">삭제</button></td>
-                   </tr>
-                   <tr>
-                        <td>23423@yi.ac.kr</td>
-                        <td>허현범</td>
-                        <td>경기도 수원시 도리도리3동 93-23 203호</td>
-                        <td>010-3242-3242</td>
-                        <td><button type = "button">수정</button></td>
-                        <td><button type = "button">삭제</button></td>
-                   </tr>
-                   <tr>
-                        <td>23423@yi.ac.kr</td>
-                        <td>허현범</td>
-                        <td>경기도 수원시 도리도리3동 93-23 203호</td>
-                        <td>010-3242-3242</td>
-                        <td><button type = "button">수정</button></td>
-                        <td><button type = "button">삭제</button></td>
-                   </tr>
-                   <tr>
-                        <td>23423@yi.ac.kr</td>
-                        <td>허현범</td>
-                        <td>경기도 수원시 도리도리3동 93-23 203호</td>
-                        <td>010-3242-3242</td>
-                        <td><button type = "button">수정</button></td>
-                        <td><button type = "button">삭제</button></td>
-                   </tr>
-                   <tr>
-                        <td>23423@yi.ac.kr</td>
-                        <td>허현범</td>
-                        <td>경기도 수원시 도리도리3동 93-23 203호</td>
-                        <td>010-3242-3242</td>
-                        <td><button type = "button">수정</button></td>
-                        <td><button type = "button">삭제</button></td>
-                   </tr>
-                   <tr>
-                        <td>23423@yi.ac.kr</td>
-                        <td>허현범</td>
-                        <td>경기도 수원시 도리도리3동 93-23 203호</td>
-                        <td>010-3242-3242</td>
-                        <td><button type = "button">수정</button></td>
-                        <td><button type = "button">삭제</button></td>
-                   </tr>
-                   <tr>
-                        <td>23423@yi.ac.kr</td>
-                        <td>허현범</td>
-                        <td>경기도 수원시 도리도리3동 93-23 203호</td>
-                        <td>010-3242-3242</td>
-                        <td><button type = "button">수정</button></td>
-                        <td><button type = "button">삭제</button></td>
-                   </tr>
-                   <tr>
-                        <td>23423@yi.ac.kr</td>
-                        <td>허현범</td>
-                        <td>경기도 수원시 도리도리3동 93-23 203호</td>
-                        <td>010-3242-3242</td>
-                        <td><button type = "button">수정</button></td>
-                        <td><button type = "button">삭제</button></td>
-                   </tr>
+                <%}%>
                 </tbody>
                 <tfoot>
                     <tr>

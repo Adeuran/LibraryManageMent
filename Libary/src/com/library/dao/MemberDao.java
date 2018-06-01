@@ -5,7 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.library.memberVo.MemberVO;
+import com.library.Vo.MemberVO;
+
 import java.sql.PreparedStatement;
 
 public class MemberDao {
@@ -77,12 +78,13 @@ public class MemberDao {
 		{
 			
 			conn = connect();
-			psmt = conn.prepareStatement("insert into member values(,?,?,?,?,?)");
 			// name /  email / address / phone / pwd
 			ArrayList<MemberVO> list = memberList();
 			for(int i = 0; i < list.size() ; i++)
 			{
 				MemberVO IdchkMember = list.get(i);
+				System.out.println("member id : " + id);
+				System.out.println("chkMember id : " + IdchkMember.getEmail());
 				if(id.equals(IdchkMember.getEmail()))
 				{
 					Idchk = true;
@@ -90,6 +92,7 @@ public class MemberDao {
 				}
 			}
 			Idchk = false;
+			psmt = conn.prepareStatement("insert into member (name,email,address,phone,pw) values(?,?,?,?,?)");
 			psmt.setString(1,member.getName());
 			psmt.setString(2, member.getEmail());
 			psmt.setString(3, member.getAddress());
@@ -116,14 +119,14 @@ public class MemberDao {
 		try
 		{
 			conn = connect();
-			psmt = conn.prepareStatement("select * from member where id = ?");
+			psmt = conn.prepareStatement("select * from member where email = ?");
 			psmt.setString(1,id);
 			rs = psmt.executeQuery();
 			while(rs.next())
 			{
-				member = new MemberVO(rs.getString(1),
-						rs.getString(2),rs.getString(3),
-						rs.getString(4),rs.getString(5));
+				member = new MemberVO(rs.getString(2),
+						rs.getString(3),rs.getString(4),
+						rs.getString(5),rs.getString(6));
 			}
 		}
 		catch(Exception e)
@@ -195,7 +198,7 @@ public class MemberDao {
 		try 
 		{
 			conn = connect();
-			psmt = conn.prepareStatement("select * from member");
+			psmt = conn.prepareStatement("select name,email,address,phone,pw from member");
 			rs = psmt.executeQuery();
 			while(rs.next())
 			{
