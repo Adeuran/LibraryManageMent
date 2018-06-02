@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.library.Vo.BookVO" %>
+<%@ page import="com.library.service.BookService" %>
+<%@ page import="java.util.ArrayList" %>
 <!doctype html>
 <html>
    <head>
@@ -13,6 +16,11 @@
     </head>
     <body>
         <%@ include file="./elements/adminNav.jsp" %>
+        <%
+        String error = (String)request.getAttribute("error");
+        BookVO search = (BookVO)request.getAttribute("searchMember");
+        ArrayList<BookVO> rs;
+        %>
         <section>
             <h2>도서 관리</h2>
             <form action = "#">
@@ -32,7 +40,11 @@
                     <th></th>
                 </thead>
                 <tbody>
-                <%%>
+                <%
+                if(search != null) {
+                	rs = new ArrayList<BookVO>();
+                	rs.add(search);
+                %>
 					<tr>
 						<td>한수와 친구들</td>
 						<td>호러물</td>
@@ -42,7 +54,7 @@
 						<td><button type = "button">수정</button></td>
 						<td><button type = "button">삭제</button></td>
 					</tr>
-					<%%>
+					<%}%>
                 </tbody>
                 <tfoot>
                     <tr>

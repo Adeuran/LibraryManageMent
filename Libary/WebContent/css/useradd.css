@@ -9,7 +9,7 @@ section {
     margin : 0 auto;
     padding: 20px;
     width : 800px;
-    height: 430px;
+    height: 460px;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
     margin: auto;
@@ -18,6 +18,9 @@ section {
 }
 section div,form{
     display: inline-block;
+}
+.alter {
+	margin: 0 1.5em;
 }
 input {
     border : none;
@@ -83,7 +86,5 @@ footer{
     position: absolute;
     text-align: center;
     width: 100%;
-}
-.copy {
-    font-size: 1em;
+    background-color: #EEEEEE;
 }

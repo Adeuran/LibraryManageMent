@@ -63,10 +63,3 @@ section{
     width : 250px;
     height : 250px;
 }
-footer{
-    bottom: 0;
-    display: block;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-}

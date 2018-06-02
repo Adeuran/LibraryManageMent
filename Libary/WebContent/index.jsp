@@ -1,5 +1,5 @@
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>-->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
     <head>
@@ -13,7 +13,7 @@
         <section>
            <div class="card">
                <img id="logo" src="img/logo.jpg">
-            <form onsubmit = check() method = "post">
+            <form action=""  method="post">
                 <h2>로그인</h2>
                 <div class="inputBox">
                     <span>이메일</span>
@@ -30,15 +30,6 @@
                 <img id="img" src = "./img/IndexLogin.gif">
            </div>
         </section>
-        <!--<%@ include file="./elements/footer.jsp" %>-->
-        <script>
-            check = function(){
-                var pw = document.getElementById("pw").value;
-                var pwcheck = document.getElementById("pwcheck").value;
-                if(pw != pwcheck){
-                    alert("비밀번호와 비밀번호 확인란이 일치하지 않습니다.");
-                }
-            }
-        </script>
+        <%@ include file="./elements/footer.jsp" %>
     </body>
 </html>

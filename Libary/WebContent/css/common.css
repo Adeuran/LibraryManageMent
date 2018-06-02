@@ -3,6 +3,7 @@ body {
     font-family: "Noto Sans KR";
     margin: 0;
     overflow-x: hidden;
+    height: 100%;
 }
 
 header {
@@ -24,7 +25,7 @@ nav a {
 
 nav ul {
     list-style: none;
-    margin: 0 50px 0 0;
+    margin: 0 5px 0 0;
 }
 
 nav li {
@@ -34,6 +35,10 @@ nav li {
     margin-right: -5px;
     font-weight: 500;
     color: #424242;
+}
+nav a:last-child li{
+	color: #ffffff;
+	background-color: #4386fc;
 }
 nav li:hover {
     transition: background-color 0.5s ease;
@@ -50,12 +55,13 @@ header img {
 }
 
 footer {
-    border-top: solid 2px #9e9e9e;
+    /*border-top: solid 1px #9e9e9e;*/
+    background-color: #fff;
 }
 
 .copy {
     color: #070505;
-    font-size: 24px;
+    font-size: 1em;
     text-align: center;
     margin: 20px;
 }
@@ -67,4 +73,15 @@ footer {
 .center {
     display: inline-block;
     margin: 0 auto;
+}
+
+.alter {
+	padding: .75rem 1.25rem;
+	border-radius: .25rem;
+	display: block;
+}
+.alter-error {
+	color: #721c24;
+	background-color: #f8d7da;
+	border: 1px solid #f5c6cb;
 }

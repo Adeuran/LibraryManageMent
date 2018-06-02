@@ -18,14 +18,23 @@
     <body>
         <%@ include file="./elements/adminNav.jsp" %>
         <%
-        MemberService service = MemberService.serviceGetInstance();
-        ArrayList <MemberVO> rs = service.getList();
+        String error = (String)request.getAttribute("error");
+        MemberVO search = (MemberVO)request.getAttribute("searchMember");
+        ArrayList <MemberVO> rs;
+        if(search != null) {
+        	rs = new ArrayList<MemberVO>();
+        	rs.add(search);
+        }
+        else {
+        	MemberService service = MemberService.serviceGetInstance();
+            rs = service.getList();
+        }
         %>
         <section>
            <div class="center">
                <h1>회원 관리</h1>
-            <form action = "user">
-                <input type="text" id="searchBox" name="searchBox" placeholder="ID를 입력해주세요">
+            <form action = "memberSearch.do" method="get">
+                <input type="text" id="searchBox" name="searchBox" placeholder="E-Mail을 입력해주세요" value="${searchMember.getEmail()}">
                 <button type="submit">
                     <img id="searchImg" src = "./img/search.png">
                 </button>
@@ -41,7 +50,11 @@
                 </thead>
                 <tbody>
                 <%
-                for(MemberVO mem : rs) {
+                if(error != null){
+                	out.println("<tr><td colspan=\"6\"><span id=\"errorMsg\">"+error+"<span><td><tr>");
+                }
+                else{
+                	for(MemberVO mem : rs) {
                 %>
                    <tr>
                         <td><%=mem.getEmail() %></td>
@@ -49,8 +62,8 @@
                         <td><%=mem.getAddress() %></td>
                         <td><%=mem.getPhone() %></td>
                         <td>
-                        	<form action="memberUpdate.do" method="get">
-                        		<input type="hidden" name="num" value="<%=mem.getNum() %>">
+                        	<form action="useradd.jsp" method="get">
+                        		<input type="hidden" name="email" value="<%=mem.getEmail() %>">
    								<input type="submit" value="수정">
 							</form>
 						</td>
@@ -63,6 +76,7 @@
                    </tr>
                 <%}%>
                 </tbody>
+                <%} %>
                 <tfoot>
                     <tr>
                         <td colspan="6">
