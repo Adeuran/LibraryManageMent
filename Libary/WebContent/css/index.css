@@ -80,6 +80,7 @@ footer{
     position: absolute;
     text-align: center;
     width: 100%;
+    background-color: #EEEEEE;
 }
 .copy {
     font-size: 1em;
