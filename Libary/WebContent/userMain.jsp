@@ -30,7 +30,7 @@
     <section>
         <article id="memberManager"> <!-- 회원관리, 도서관리-->
            <div id="selectMenu">
-                <a href="judgegOverdue.do">
+                <a href="judgeOverdue.do">
                     <div class="select">
                         <img src = "./img/index_person.png">
                         <figcaption>도서 대여</figcaption>
