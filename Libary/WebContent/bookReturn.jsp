@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.library.Vo.BookVO" %>
+<%@ page import="com.library.Vo.MemberVO" %>
 <%@ page import="com.library.service.BookService" %>
+<%@ page import="com.library.controller.HttpUtil" %>
 <%@ page import="java.util.ArrayList" %>
 <!doctype html>
 <html>
@@ -19,11 +21,15 @@
         <%
         String error = (String)request.getAttribute("error");
         ArrayList<BookVO> rs;
+        MemberVO nowMember = (MemberVO)session.getAttribute("Login");
+        if(nowMember == null){
+        	request.setAttribute("error", "먼저 로그인해주세요.");
+        	HttpUtil.forward(request, response, "/index.jsp");}
        	BookService service = BookService.getInstance();
-        rs = service.BookListService();
+        rs = service.borrowBookListService(nowMember.getNum());
         %>
         <section>
-            <h2>도서 관리</h2>
+            <h2>도서 반납</h2>
             <table>
                 <thead>
                     <th>도서명</th>
@@ -48,16 +54,11 @@
 						<td><%=book.getAuthor() %></td>
 						<td><%=book.getPublisher() %></td>
 						<td><%=book.getPublication_Day() %></td>
-						<td>
-						<%
-						if(book.getBorrow() == 1){out.print("대여불가");}
-						else{
-						%>
+						<td>		
 						<form action="bookBorrow.do" method="get">
                         	<input type="hidden" name="num" value="<%=book.getNum()%>">
-   							<input type="submit" value="대여하기">
+   							<input type="submit" value="반납하기">
 						</form>
-						<%}%>
 						</td>
 					</tr>
 					<%}}%>

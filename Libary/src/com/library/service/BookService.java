@@ -51,7 +51,7 @@ public class BookService {
 		dao.bookReturn(num);
 	}
 	
-	public static ArrayList<BookVO> borrowBookListService(int num)
+	public ArrayList<BookVO> borrowBookListService(int num)
 	{
 		return dao.borrowBookList(num);
 	}
