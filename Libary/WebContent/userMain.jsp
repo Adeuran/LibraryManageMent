@@ -12,12 +12,12 @@
         </title>
     </head>
     <body>
-    <%@ include file="./elements/adminNav.jsp" %>
+    <%@ include file="./elements/userNav.jsp" %>
     <aside>
         <div id="black"></div>
         <div id="asideMent">
             <h2>도서이용 페이지</h2>
-            <h3>책은 마음의 양식입니다.</h3>
+            <h3>책은 마음의 양식입니다. 독서를 생활화 합시다.</h3>
         </div>
     </aside>
     <a >
@@ -32,7 +32,7 @@
            <div id="selectMenu">
                 <a href="judgeOverdue.do">
                     <div class="select">
-                        <img src = "./img/index_person.png">
+                        <img src = "./img/index_Borrow.png">
                         <figcaption>도서 대여</figcaption>
                     </div>
                 </a>
