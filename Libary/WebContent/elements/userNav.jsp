@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <header id="head">
-	<a href="./adminMain.jsp"><img src="./img/logo.jpg"></a>
+	<a href="./userMain.jsp"><img src="./img/logo.jpg"></a>
 	<nav>
 	    <ul>
 	        <a href="./bookRental.jsp"><li>도서 대출</li></a>

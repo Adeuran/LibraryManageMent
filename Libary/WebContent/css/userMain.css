@@ -1,0 +1,76 @@
+aside {
+    background-image: url(../img/index_background.jpg);
+    background-size: cover;
+    box-shadow: 0 2px 5px rgba(0,0,0,.26);
+    height: 650px;
+    margin: -40px;
+    z-index: 0;
+    position:relative;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+#black {
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.5);
+    position:absolute;
+    height:100%;
+    width:100%
+    
+}
+#asideMent{
+    color: white;
+    text-align: left;
+    margin-left: 20em;
+}
+h2 {
+    padding-top: 200px;
+    font-weight: normal;
+    font-size: 48px;
+}
+h3 {
+    font-weight: 200;
+    font-size: 36px;
+}
+
+#circleButton {
+    position: absolute;
+    background-color: #009688;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    z-index: 3;
+    left:50%;
+    transform:translateX(-50%);
+    box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24);
+}
+#circleButton:active {
+    background-color: #00675b;
+}
+#circleButton img {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left:50%;
+    transform:translateX(-50%);
+    top: 15%;
+    transition: transform 1s;
+}
+section {
+    margin: 9em 0;
+    text-align: center;
+}
+article {
+    display: inline-block;
+    margin: 7em;
+    padding: 3em;
+    transition: background-color 0.5s ease;
+}
+article:active {
+    background-color: #E0E0E0;
+}
+figcaption {
+    font-size: 2em;
+    font-weight: bold;
+}

@@ -9,7 +9,7 @@
      <servlet-class>com.library.controller.FrontController</servlet-class>
      <init-param>
      <param-name>adminId</param-name>
-     <param-value>admin</param-value>
+     <param-value>admin@admin.com</param-value>
      </init-param>
      <init-param>
      <param-name>adminPw</param-name>
