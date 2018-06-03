@@ -15,7 +15,7 @@
         </title>
     </head>
     <body>
-        <%@ include file="./elements/adminNav.jsp" %>
+        <%@ include file="./elements/userNav.jsp" %>
         <%
         String error = (String)request.getAttribute("error");
         ArrayList<BookVO> rs;
