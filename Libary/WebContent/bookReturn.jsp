@@ -11,35 +11,19 @@
          <link rel="stylesheet" type="text/css" href="./css/book.css">
          <script src="./js/jquery.js"></script>
         <title>
-           	 도서 대여 | 도서관리 페이지
+            	도서반납 | 도서관리 페이지
         </title>
     </head>
     <body>
-        <%@ include file="./elements/userNav.jsp" %>
+        <%@ include file="./elements/adminNav.jsp" %>
         <%
         String error = (String)request.getAttribute("error");
-        ArrayList<BookVO> search = (ArrayList<BookVO>)request.getAttribute("book");
-        String searchText = request.getParameter("searchBox");
         ArrayList<BookVO> rs;
-        if(search != null) {
-        	rs = search;
-        }
-        else {
-        	BookService service = BookService.getInstance();
-            rs = service.BookListService();
-            searchText = "";
-        }
-
-        
+       	BookService service = BookService.getInstance();
+        rs = service.BookListService();
         %>
         <section>
-            <h2>도서 대여</h2>
-            <form action = "bookSearch.do">
-                <input type = "text" id = "searchBox" name = "searchBox" placeholder="검색할 책명을 입력하시오" value="<%=searchText %>">
-                <button type = "submit">
-                        <img src = "./img/search.png" id = "searchImg">
-                </button>
-            </form>
+            <h2>도서 관리</h2>
             <table>
                 <thead>
                     <th>도서명</th>

@@ -253,7 +253,7 @@ public class MemberDao {
 		return pw;
 	}
 	
-	public void MemberOverdueSet(int num, long overdueDay)
+	public void MemberOverdueSet(int num, int overdueDay)
 	{
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -262,7 +262,7 @@ public class MemberDao {
 			conn = connect();
 			psmt = conn.prepareStatement("update member set overdue = ?, overdue_Day = ? where num = ? ");
 			psmt.setInt(1,1);
-			psmt.setLong(2,overdueDay);
+			psmt.setInt(2,overdueDay);
 			psmt.setInt(3,num);
 			psmt.executeUpdate();
 		}

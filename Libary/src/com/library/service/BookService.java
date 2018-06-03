@@ -22,17 +22,8 @@ public class BookService {
 		dao.bookInsert(book);
 	}
 	
-	public BookVO BookSearchService(String title)
+	public ArrayList<BookVO> BookSearchService(String title)
 	{
-		if(dao.bookSearch(title) != null)
-		{
-			System.out.println("찾기 완료");
-			System.out.println((dao.bookSearch(title)).getAuthor());
-		}
-		else
-		{
-			System.out.println("책없습니다");
-		}
 		return dao.bookSearch(title);
 	}
 	public void BookUpdateService(BookVO book, int num)

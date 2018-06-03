@@ -37,7 +37,7 @@ public class MemberLoginProcessController implements Controller{
 		}
 		if(id.isEmpty() || pw.isEmpty())
 		{
-			req.setAttribute("emptyError","모두 입력해주세요.");
+			req.setAttribute("error","모두 입력해주세요.");
 			HttpUtil.forward(req, res,"/index.jsp");
 			return;
 		}
@@ -57,7 +57,7 @@ public class MemberLoginProcessController implements Controller{
 		{
 			if(s.getAttribute("Login") != null)
 			{
-				req.setAttribute("overlapError","이미 로그인중입니다.");
+				req.setAttribute("error","이미 로그인중입니다.");
 				HttpUtil.forward(req, res,"/index.jsp");
 				return;
 			}

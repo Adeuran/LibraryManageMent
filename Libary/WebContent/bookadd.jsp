@@ -13,7 +13,7 @@
         if(title != null){
         	BookService service = BookService.getInstance();
         	mode = "도서 수정";
-        	BookVO book = service.BookSearchService(title);
+        	BookVO book = service.BookSearchService(title).get(0);
         	bookInfo = new String[]{book.getTitle(),book.getCategory(),book.getAuthor(),book.getPublisher(),book.getPublication_Day(),String.valueOf(book.getNum())};
         	readOnly = "readonly";
         	sendTo = "bookUpdate.do";

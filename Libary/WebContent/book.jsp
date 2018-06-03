@@ -18,15 +18,16 @@
         <%@ include file="./elements/adminNav.jsp" %>
         <%
         String error = (String)request.getAttribute("error");
-        BookVO search = (BookVO)request.getAttribute("book");
+        ArrayList<BookVO> search = (ArrayList<BookVO>)request.getAttribute("book");
+        String searchText = request.getParameter("searchBox");
         ArrayList<BookVO> rs;
         if(search != null) {
-        	rs = new ArrayList<BookVO>();
-        	rs.add(search);
+        	rs = search;
         }
         else {
         	BookService service = BookService.getInstance();
             rs = service.BookListService();
+            searchText = "";
         }
 
         
@@ -34,7 +35,7 @@
         <section>
             <h2>도서 관리</h2>
             <form action = "bookSearch.do">
-                <input type = "text" id = "searchBox" name = "searchBox" placeholder="검색할 책명을 입력하시오" value="${book.getTitle()}">
+                <input type = "text" id = "searchBox" name = "searchBox" placeholder="검색할 책명을 입력하시오" value="<%=searchText %>">
                 <button type = "submit">
                         <img src = "./img/search.png" id = "searchImg">
                 </button>

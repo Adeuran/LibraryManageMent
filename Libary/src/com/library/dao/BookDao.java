@@ -91,15 +91,17 @@ public class BookDao {
 		}
 	}
 	
-	public BookVO bookSearch(String title)
+	public ArrayList<BookVO> bookSearch(String title)
 	{
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		BookVO book = null;
+		ArrayList<BookVO> list = null;
 		
 		try
 		{
+			list = new ArrayList<BookVO>();
 			conn = connect();
 			psmt = conn.prepareStatement("select * from book where title = ?");
 			psmt.setString(1, title);
@@ -110,6 +112,7 @@ public class BookDao {
 				book.setNum(rs.getInt(1));
 				book.setBorrow_Idnum(rs.getInt(7));
 				book.setBorrow_Day(rs.getString(8));
+				list.add(book);
 			}
 		}
 		catch(Exception e)
@@ -121,7 +124,7 @@ public class BookDao {
 		{
 			close(conn,psmt);
 		}
-		return book;
+		return list;
 	}
 	
 	public void BookUpdate(BookVO book,int num)
@@ -132,15 +135,15 @@ public class BookDao {
 		{
 			conn = connect();
 			psmt = conn.prepareStatement("update book set title = ?, category = ?, author = ?, publisher = ?,"
-					+ "publication_Day = ?, borrow_Idnum = ?, borrow_Day = ?  where num = ?");
+					+ "publication_Day = ? where num = ?");
 			psmt.setString(1,book.getTitle());
 			psmt.setString(2, book.getCategory());
 			psmt.setString(3,book.getAuthor());
 			psmt.setString(4, book.getPublisher());
 			psmt.setString(5, book.getPublication_Day());
-			psmt.setInt(6, book.getBorrow_Idnum());
-			psmt.setString(6, book.getBorrow_Day());
-			psmt.setInt(8,num);
+			/*psmt.setInt(6, book.getBorrow_Idnum());
+			psmt.setString(6, book.getBorrow_Day());*/
+			psmt.setInt(6,num);
 			psmt.executeUpdate();
 		}
 		catch(Exception e)
@@ -160,7 +163,7 @@ public class BookDao {
 		try
 		{
 			conn = connect();
-			psmt = conn.prepareStatement("delete * from book where num = ?");
+			psmt = conn.prepareStatement("delete from book where num = ?");
 			psmt.setInt(1,num);
 			psmt.executeUpdate();
 		}
@@ -180,15 +183,17 @@ public class BookDao {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		BookVO book = null;
-		ArrayList list = null;
+		ArrayList<BookVO> list = null;
 		try
 		{
+			list = new ArrayList<BookVO>();
 			conn = connect();
 			psmt = conn.prepareStatement("select * from book");
 			rs = psmt.executeQuery();
 			while(rs.next())
 			{
 				book = new BookVO(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(1));
+				book.setBorrow(rs.getInt(9));
 				list.add(book);
 			}
 		}
@@ -263,9 +268,10 @@ public class BookDao {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		BookVO book = null;
-		ArrayList list = null;
+		ArrayList<BookVO> list = null;
 		try
 		{
+			list = new ArrayList<BookVO>();
 			conn = connect();
 			psmt = conn.prepareStatement("select * from book where borrow_Idnum = ?");
 			psmt.setInt(1,num);
@@ -315,7 +321,7 @@ public class BookDao {
 				if(calOverdue > 0)
 				{
 					MemberDao dao = MemberDao.getInstance();
-					dao.MemberOverdueSet(num, calOverdue);
+					dao.MemberOverdueSet(num, (int) calOverdue);
 					return;
 				}
 			}

@@ -29,9 +29,10 @@ public class FrontController extends HttpServlet{
 		list.put("/bookInsert.do",new BookInsertController());
 		list.put("/bookSearch.do",new BookSearchController());
 		list.put("/bookUpdate.do",new BookUpdateController());
-		list.put("/bookDelete.do",new BookUpdateController());
+		list.put("/bookDelete.do",new BookDeleteController());
 		list.put("/bookBorrow.do",new BookBorrowController());
 		list.put("/bookReturn.do",new BookReturnController());
+		list.put("/judgeOverdue.do",new JudgeOverdueController());
 	}
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

@@ -17,24 +17,25 @@ public class BookUpdateController implements Controller{
 		
 		BookService service = BookService.getInstance();
 		BookVO book = null;
-		int num = Integer.parseInt(req.getParameter("booknum"));
+		req.setCharacterEncoding("UTF-8");
+		int num = Integer.parseInt(req.getParameter("num"));
 		String title = req.getParameter("bookname");
 		String category = req.getParameter("category");
 		String author = req.getParameter("author");
 		String publisher = req.getParameter("publisher");
 		String publication_Day = req.getParameter("publishyear");
-		int borrow_Idnum = Integer.parseInt(req.getParameter("borrow_Idnum"));
-		String borrow_Day = req.getParameter("borrow_Day");
+		//int borrow_Idnum = Integer.parseInt(req.getParameter("borrow_Idnum"));
+		//String borrow_Day = req.getParameter("borrow_Day");
 		if(title.isEmpty() || category.isEmpty() || author.isEmpty() || publisher.isEmpty() ||
-				publication_Day.isEmpty() || (req.getParameter("borrow_Idnum")).isEmpty() || borrow_Day.isEmpty())
+				publication_Day.isEmpty()/*(req.getParameter("borrow_Idnum")).isEmpty() || borrow_Day.isEmpty()*/)
 		{
 			req.setAttribute("error", "빈칸이 존재합니다.");
 			HttpUtil.forward(req, res, "/bookUpdate.jsp");
 			return;
 		}
 		book = new BookVO(title,category,author,publisher,publication_Day);
-		book.setBorrow_Idnum(borrow_Idnum);
-		book.setBorrow_Day(borrow_Day);
+		//book.setBorrow_Idnum(borrow_Idnum);
+		//book.setBorrow_Day(borrow_Day);
 		service.BookUpdateService(book, num);
 		HttpUtil.forward(req, res, "/book.jsp");
 		return;
