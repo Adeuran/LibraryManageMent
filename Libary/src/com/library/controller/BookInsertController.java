@@ -25,7 +25,7 @@ public class BookInsertController implements Controller{
 				publication_Day.isEmpty())
 		{
 			req.setAttribute("error","빈칸이 존재합니다.");
-			HttpUtil.forward(req, res, "/userUpdate.jsp");
+			HttpUtil.forward(req, res, "/bookadd.jsp");
 			return;
 		}
 		BookVO book = new BookVO(title,category,author,publisher,publication_Day);

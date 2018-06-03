@@ -30,6 +30,8 @@ public class FrontController extends HttpServlet{
 		list.put("/bookSearch.do",new BookSearchController());
 		list.put("/bookUpdate.do",new BookUpdateController());
 		list.put("/bookDelete.do",new BookUpdateController());
+		list.put("/bookBorrow.do",new BookBorrowController());
+		list.put("/bookReturn.do",new BookReturnController());
 	}
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -39,6 +41,8 @@ public class FrontController extends HttpServlet{
 		String path = url.substring(contextPath.length());
 		System.out.println("path : " + path);
 		Controller subController = list.get(path);
+		System.out.println("adminId : " + adminId);
+		System.out.println("adminPw : " + adminPw);
 		request.setAttribute("adminId", adminId);
 		request.setAttribute("adminPw", adminPw);
 		subController.execute(request, response);

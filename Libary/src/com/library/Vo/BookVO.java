@@ -8,8 +8,9 @@ public class BookVO {
 	private String author;
 	private String publisher;
 	private String publication_Day;
-	private String borrow_Idnum = null;
+	private int borrow_Idnum ;
 	private String borrow_Day = null;
+	private int Borrow = 0;
 	
 	public BookVO() {}
 	
@@ -21,8 +22,19 @@ public class BookVO {
 		this.publisher = publisher;
 		this.publication_Day = publication_day;
 	}
+	
+	public BookVO(String title, String category, String author, String publisher, String publication_day, int num)
+	{
+		this.title = title;
+		this.category = category;
+		this.author = author;
+		this.publisher = publisher;
+		this.publication_Day = publication_day;
+		this.num = num;
+	}
 
-	public BookVO(String borrow_Idnum, String borrow_Day)
+
+	public BookVO(int borrow_Idnum, String borrow_Day)
 	{
 		this.borrow_Idnum = borrow_Idnum;
 		this.borrow_Day = borrow_Day;
@@ -71,15 +83,23 @@ public class BookVO {
 		return num;
 	}
 
+	public int getBorrow() {
+		return Borrow;
+	}
+
+	public void setBorrow(int borrow) {
+		Borrow = borrow;
+	}
+
 	public void setNum(int num) {
 		this.num = num;
 	}
 	
-	public String getBorrow_Idnum() {
+	public int getBorrow_Idnum() {
 		return borrow_Idnum;
 	}
 
-	public void setBorrow_Idnum(String borrow_idnum) {
+	public void setBorrow_Idnum(int borrow_idnum) {
 		this.borrow_Idnum = borrow_idnum;
 	}
 
@@ -90,4 +110,5 @@ public class BookVO {
 	public void setBorrow_Day(String borrow_Day) {
 		this.borrow_Day = borrow_Day;
 	}
+	
 }

@@ -1,16 +1,22 @@
 package com.library.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import com.library.Vo.BookVO;
+import com.library.Vo.MemberVO;
+import com.library.service.BookService;
 
 public class BookDao {
 
 	private static BookDao dao = new BookDao();
 	private BookDao() {}
+	
 	public static BookDao getInstance() 
 	{
 		return dao;
@@ -100,9 +106,9 @@ public class BookDao {
 			rs = psmt.executeQuery();
 			while(rs.next())
 			{
-				book = new BookVO(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+				book = new BookVO(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(1));
 				book.setNum(rs.getInt(1));
-				book.setBorrow_Idnum(rs.getString(7));
+				book.setBorrow_Idnum(rs.getInt(7));
 				book.setBorrow_Day(rs.getString(8));
 			}
 		}
@@ -132,7 +138,7 @@ public class BookDao {
 			psmt.setString(3,book.getAuthor());
 			psmt.setString(4, book.getPublisher());
 			psmt.setString(5, book.getPublication_Day());
-			psmt.setString(6, book.getBorrow_Idnum());
+			psmt.setInt(6, book.getBorrow_Idnum());
 			psmt.setString(6, book.getBorrow_Day());
 			psmt.setInt(8,num);
 			psmt.executeUpdate();
@@ -162,6 +168,163 @@ public class BookDao {
 		{
 			System.out.println("delete 오류 발생 : " + e);
 		}
+		finally
+		{
+			close(conn,psmt);
+		}
+	}
+	
+	public ArrayList<BookVO> BookList()
+	{
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		BookVO book = null;
+		ArrayList list = null;
+		try
+		{
+			conn = connect();
+			psmt = conn.prepareStatement("select * from book");
+			rs = psmt.executeQuery();
+			while(rs.next())
+			{
+				book = new BookVO(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(1));
+				list.add(book);
+			}
+		}
+		
+		catch(Exception e)
+		{
+			System.out.println("bookList 오류 발생 : " + e);
+		}
+		
+		finally
+		{
+			close(conn,psmt);
+		}
+		
+		return list;
+	}
+	public void BookBorrow(MemberVO member,int num)
+	{
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		String inDate   = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date());
+		try
+		{
+			conn = connect();
+			psmt = conn.prepareStatement("update book set borrow = ?, borrow_Idnum = ?,borrow_Day = ? where num = ?");
+			psmt.setInt(1,1);
+			psmt.setInt(2, member.getNum());
+			psmt.setString(3, inDate);
+			psmt.setInt(4, num);
+			psmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.out.println("BookBorrow 오류 발생 :" + e);
+		}
+		
+		finally
+		{
+			close(conn,psmt);
+		}
+	}
+	
+	public void bookReturn(int num)
+	{
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		try
+		{
+			conn = connect();
+			psmt = conn.prepareStatement("update book set borrow = ?, borrow_Idnum = ?,borrow_Day = ? where num = ?");
+			psmt.setInt(1,0);
+			psmt.setInt(2,0);
+			psmt.setString(3,null);
+			psmt.setInt(4, num);
+			psmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.out.println("BookBorrow 오류 발생 :" + e);
+		}
+		
+		finally
+		{
+			close(conn,psmt);
+		}
+	}
+	
+	public ArrayList<BookVO> borrowBookList(int num)
+	{
+	
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		BookVO book = null;
+		ArrayList list = null;
+		try
+		{
+			conn = connect();
+			psmt = conn.prepareStatement("select * from book where borrow_Idnum = ?");
+			psmt.setInt(1,num);
+			rs = psmt.executeQuery();
+			while(rs.next())
+			{
+				book = new BookVO(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(1));
+				book.setBorrow_Idnum(rs.getInt(7));
+				book.setBorrow_Day(rs.getString(8));
+				book.setBorrow(rs.getInt(9));
+				list.add(book);
+			}
+		}
+		
+		catch(Exception e)
+		{
+			System.out.println("borrowBookList 오류 발생 : " + e);
+		}
+		
+		finally
+		{
+			close(conn,psmt);
+		}
+		
+		return list;
+	}
+	
+	public void judgeOverdue(int num) //유저 num
+	{
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ArrayList<BookVO> list = null;
+		BookService service = BookService.getInstance();
+		try
+		{
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd");
+			String inDate   = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date());
+			list = service.borrowBookListService(num);
+			conn = connect();
+			for(BookVO book : list)
+			{
+				Date borrowDate = (Date) format.parse(book.getBorrow_Day());
+				Date todayDate = (Date) format.parse(inDate);
+				
+				long calOverdue = (todayDate.getTime() - borrowDate.getTime()) / (24*60*60*1000) - 7;
+				System.out.println("지난 날짜 : " + calOverdue);
+				if(calOverdue > 0)
+				{
+					MemberDao dao = MemberDao.getInstance();
+					dao.MemberOverdueSet(num, calOverdue);
+					return;
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println("calOverdue 오류 발생 : " + e);
+		}
+		
 		finally
 		{
 			close(conn,psmt);

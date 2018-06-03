@@ -29,7 +29,7 @@
         <link rel="stylesheet" type="text/css" href="./css/common.css">
         <link rel="stylesheet" type="text/css" href="./css/useradd.css">
         <script src="./js/jquery.js"></script>
-        <title><%=mode %></title>
+        <title><%=mode %>  | 도서관리 페이지</title>
     </head>
     <body>
         <%@ include file="./elements/adminNav.jsp" %>

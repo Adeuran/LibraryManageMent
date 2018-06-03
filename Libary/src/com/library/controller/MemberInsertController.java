@@ -16,6 +16,8 @@ public class MemberInsertController implements Controller{
 	{
 		// name /  email / address / phone / pwd
 		req.setCharacterEncoding("UTF-8");
+		String inDate   = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date());
+		System.out.println(inDate);
 		MemberService service = MemberService.serviceGetInstance();
 		String name = req.getParameter("name");
 		String email  = req.getParameter("e-mail");

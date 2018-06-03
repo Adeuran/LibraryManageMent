@@ -18,13 +18,23 @@
         <%@ include file="./elements/adminNav.jsp" %>
         <%
         String error = (String)request.getAttribute("error");
-        BookVO search = (BookVO)request.getAttribute("searchMember");
+        BookVO search = (BookVO)request.getAttribute("book");
         ArrayList<BookVO> rs;
+        if(search != null) {
+        	rs = new ArrayList<BookVO>();
+        	rs.add(search);
+        }
+        else {
+        	BookService service = BookService.getInstance();
+            rs = service.BookListService();
+        }
+
+        
         %>
         <section>
             <h2>도서 관리</h2>
-            <form action = "#">
-                <input type = "text" id = "searchBox" name = "searchBox" placeholder="검색할 책명을 입력하시오">
+            <form action = "bookSearch.do">
+                <input type = "text" id = "searchBox" name = "searchBox" placeholder="검색할 책명을 입력하시오" value="${book.getTitle()}">
                 <button type = "submit">
                         <img src = "./img/search.png" id = "searchImg">
                 </button>
@@ -41,21 +51,32 @@
                 </thead>
                 <tbody>
                 <%
-                if(search != null) {
-                	rs = new ArrayList<BookVO>();
-                	rs.add(search);
+                if(error != null){
+                	out.println("<tr><td colspan=\"6\"><span id=\"errorMsg\">"+error+"<span><td><tr>");
+                }
+                else{
+                	for(BookVO book : rs) {
                 %>
 					<tr>
-						<td>한수와 친구들</td>
-						<td>호러물</td>
-						<td>한수</td>
-						<td>한수사</td>
-						<td>한수년</td>
-						<td><button type = "button">수정</button></td>
-						<td><button type = "button">삭제</button></td>
+						<td><%=book.getTitle() %></td>
+						<td><%=book.getCategory() %></td>
+						<td><%=book.getAuthor() %></td>
+						<td><%=book.getPublisher() %></td>
+						<td><%=book.getPublication_Day() %></td>
+						<td><form action="bookadd.jsp" method="get">
+                        		<input type="hidden" name="title" value="<%=book.getTitle()%>">
+   								<input type="submit" value="수정">
+							</form></td>
+						<td>
+                        	<form action="bookDelete.do" method="get">
+                        		<input type="hidden" name="bookNum" value="<%=book.getNum() %>">
+   								<input type="submit" value="삭제">
+							</form>
+                        </td>
 					</tr>
 					<%}%>
                 </tbody>
+                <%}%>
                 <tfoot>
                     <tr>
                         <td colspan="7">

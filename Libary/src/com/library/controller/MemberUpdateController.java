@@ -13,9 +13,10 @@ public class MemberUpdateController implements Controller{
 
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException
 	{
+		req.setCharacterEncoding("UTF-8");
 		int num = Integer.parseInt(req.getParameter("num"));
 		MemberService service = MemberService.serviceGetInstance();
-		String email = req.getParameter("email");
+		String email = req.getParameter("e-mail");
 		String name = req.getParameter("name");
 		String address = req.getParameter("address");
 		String phone = req.getParameter("phone");

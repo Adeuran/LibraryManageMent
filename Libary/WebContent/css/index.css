@@ -85,3 +85,7 @@ footer{
 .copy {
     font-size: 1em;
 }
+.alter-inputError {
+	color: red;
+	font-size: 0.9em;
+}

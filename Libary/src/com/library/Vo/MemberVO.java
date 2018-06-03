@@ -8,7 +8,7 @@ public class MemberVO {
 	private String phone;
 	private String pwd;
 	private int num;
-	private String overdue;
+	private int overdue = 0;
 	private String overdue_Day;
 	
 
@@ -16,7 +16,6 @@ public class MemberVO {
 	{
 		
 	}	
-	
 	public MemberVO(String name, String email, String address, String phone, String pwd)
 	{
 		this.name = name;
@@ -24,6 +23,11 @@ public class MemberVO {
 		this.address = address;
 		this.phone = phone;
 		this.pwd = pwd;
+	}
+	public MemberVO(String name, String email, String address, String phone, String pwd,int num)
+	{
+		this(name,email,address,phone,pwd);
+		this.num = num;
 	}
 
 	public String getName() {
@@ -74,11 +78,11 @@ public class MemberVO {
 		this.num = num;
 	}
 
-	public String getOverdue() {
+	public int getOverdue() {
 		return overdue;
 	}
 
-	public void setOverdue(String overdue) {
+	public void setOverdue(int overdue) {
 		this.overdue = overdue;
 	}
 
@@ -89,5 +93,20 @@ public class MemberVO {
 	public void setOverdue_Day(String overdue_Day) {
 		this.overdue_Day = overdue_Day;
 	}
-	
+
+	public static boolean memberChkOverdue(MemberVO member)
+	{
+		if(member.getOverdue() == 0)
+		{
+			return true;
+		}
+		
+		else
+		{
+			return false;
+			
+		}
+	}
 }
+
+

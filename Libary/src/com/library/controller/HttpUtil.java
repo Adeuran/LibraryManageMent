@@ -10,8 +10,10 @@ public class HttpUtil {
 	      try {
 	         RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 	         dispatcher.forward(request, response);
-	      } catch (Exception ex) {
-	         System.out.println("forward 오류: " + ex);
+	      } catch (Exception e) {
+	         System.out.println("forward 오류: " + e);
 	      }
 	   }
+	
+	
 }

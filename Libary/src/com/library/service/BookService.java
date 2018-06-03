@@ -1,6 +1,9 @@
 package com.library.service;
 
+import java.util.ArrayList;
+
 import com.library.Vo.BookVO;
+import com.library.Vo.MemberVO;
 import com.library.dao.BookDao;
 
 public class BookService {
@@ -42,4 +45,28 @@ public class BookService {
 		dao.BookDelete(num);
 	}
 	
+	public void BookBorrowService(MemberVO member, int num)
+	{
+		dao.BookBorrow(member, num);
+	}
+	
+	public ArrayList<BookVO> BookListService()
+	{
+		return dao.BookList();
+	}
+	
+	public void bookReturnService(int num)
+	{
+		dao.bookReturn(num);
+	}
+	
+	public static ArrayList<BookVO> borrowBookListService(int num)
+	{
+		return dao.borrowBookList(num);
+	}
+	
+	public void judgeOverdueService(int num)
+	{
+		dao.judgeOverdue(num);
+	}
 }

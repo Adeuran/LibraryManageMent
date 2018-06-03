@@ -126,7 +126,7 @@ public class MemberDao {
 			{
 				member = new MemberVO(rs.getString(2),
 						rs.getString(3),rs.getString(4),
-						rs.getString(5),rs.getString(6));
+						rs.getString(5),rs.getString(6),rs.getInt(1));
 			}
 		}
 		catch(Exception e)
@@ -198,17 +198,22 @@ public class MemberDao {
 		try 
 		{
 			conn = connect();
-			psmt = conn.prepareStatement("select name,email,address,phone,pw from member");
+			psmt = conn.prepareStatement("select name,email,address,phone,pw,num from member");
 			rs = psmt.executeQuery();
 			while(rs.next())
 			{
-				member = new MemberVO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+				member = new MemberVO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
 				list.add(member);
 			}
 		}
 		catch(Exception e)
 		{
 			System.out.println("memberlist 오류 발생 " + e);
+		}
+		
+		finally
+		{
+			close(conn,psmt);
 		}
 		return list;
 		
@@ -222,19 +227,52 @@ public class MemberDao {
 		String pw = null;
 		try
 		{
-			psmt = conn.prepareStatement("select pw from member where id = ?");
+			conn = connect();
+			System.out.println("Login 시작");
+			System.out.println("id in dao : " +id);
+			psmt = conn.prepareStatement("select pw from member where email = ?");
+			System.out.println("Login rs 시작");
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
 			while(rs.next())
 			{
+				System.out.println("Login rs 시작");
 				pw = rs.getString(1);
+				System.out.println("pw in dao : " + pw);
 			}
 		}
 		catch(Exception e)
 		{
 			System.out.println("exception 발생 : " + e);
 		}
+		
+		finally
+		{
+			close(conn,psmt);
+		}
 		return pw;
 	}
 	
+	public void MemberOverdueSet(int num, long overdueDay)
+	{
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		try
+		{
+			conn = connect();
+			psmt = conn.prepareStatement("update member set overdue = ?, overdue_Day = ? where num = ? ");
+			psmt.setInt(1,1);
+			psmt.setLong(2,overdueDay);
+			psmt.setInt(3,num);
+			psmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			
+		}
+		finally
+		{
+			close(conn,psmt);
+		}
+	}
 }

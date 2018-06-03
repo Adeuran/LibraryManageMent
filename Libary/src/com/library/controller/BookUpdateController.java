@@ -23,10 +23,10 @@ public class BookUpdateController implements Controller{
 		String author = req.getParameter("author");
 		String publisher = req.getParameter("publisher");
 		String publication_Day = req.getParameter("publishyear");
-		String borrow_Idnum = req.getParameter("borrow_Idnum");
+		int borrow_Idnum = Integer.parseInt(req.getParameter("borrow_Idnum"));
 		String borrow_Day = req.getParameter("borrow_Day");
 		if(title.isEmpty() || category.isEmpty() || author.isEmpty() || publisher.isEmpty() ||
-				publication_Day.isEmpty() || borrow_Idnum.isEmpty() || borrow_Day.isEmpty())
+				publication_Day.isEmpty() || (req.getParameter("borrow_Idnum")).isEmpty() || borrow_Day.isEmpty())
 		{
 			req.setAttribute("error", "빈칸이 존재합니다.");
 			HttpUtil.forward(req, res, "/bookUpdate.jsp");

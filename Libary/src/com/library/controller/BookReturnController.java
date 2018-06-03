@@ -5,18 +5,22 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.library.Vo.MemberVO;
 import com.library.service.BookService;
 
-public class BookDeleteController implements Controller{
+public class BookReturnController implements Controller{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession s = req.getSession();
 		BookService service = BookService.getInstance();
-		int num = Integer.parseInt(req.getParameter("bookNum"));
-		service.BookDeleteService(num);
-		HttpUtil.forward(req, res,"/book.jsp");
+		MemberVO member = (MemberVO) s.getAttribute("currentUser") ;
+		service.bookReturnService(member.getNum());
+		HttpUtil.forward(req, res, "/bookadd.jsp");
+		return;
 	}
 
 	

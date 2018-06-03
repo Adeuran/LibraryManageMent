@@ -13,15 +13,48 @@
         <section>
            <div class="card">
                <img id="logo" src="img/logo.jpg">
-            <form action=""  method="post">
+            <form action="memberLoginProcess.do"  method="post">
                 <h2>로그인</h2>
+                <%
+                String id = request.getParameter("e-mail");
+                if(id == null)
+                	id="";
+                String error = (String)request.getAttribute("error");
+                if(error != null){%>
+            	<div class="alter alter-error"><%=error %></div>
+            	<%}%>
                 <div class="inputBox">
                     <span>이메일</span>
-                    <input type = "email" name = "e-mail" id = "e-mail" placeholder="이메일">
+                    <input type = "email" name = "e-mail" id = "e-mail" placeholder="이메일" value="<%=id %>">
+                    <%
+                    error = (String)request.getAttribute("idError");
+                    if(error != null) { %>
+                    	<div class="alter-inputError"><%=error %></div>
+                    	<style type="text/css" >
+							input[type=email] {
+							    border : none;
+							    font-size: 1.2em;
+							    border-bottom : 1px solid red;
+							}
+						</style>
+                    <%}%>
+                    <span class="errorInput"></span>
                 </div>
                 <div class="inputBox">
                     <span>비밀번호</span>
                     <input type = "password" name = "pw" id = "pw" placeholder="비밀번호">
+                    <%
+                    error = (String)request.getAttribute("pwError");
+                    if(error != null){%>
+                    	<div class="alter-inputError"><%=error %></div>
+                    	<style type="text/css">
+							input[type=password] {
+							    border : none;
+							    font-size: 1.2em;
+							    border-bottom : 1px solid red;
+							}
+						</style>
+                    <%}%>
                 </div>
                 <div id="buttonDiv">
                    <input type="submit" value="로그인" id="LoginButton">

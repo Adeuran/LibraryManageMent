@@ -14,7 +14,6 @@ public class MemberService {
 		return service;
 	}
 	MemberDao dao = MemberDao.getInstance();
-	private ArrayList<MemberVO> list = dao.memberList();
 	public void MemberInsert(MemberVO member)
 	{
 		dao.MemberInsert(member);
@@ -42,7 +41,7 @@ public class MemberService {
 	
 	public ArrayList<MemberVO> getList()
 	{
-		return list;
+		return dao.memberList();
 	}
 	
 	public String MemberLoginProcess(String id)
