@@ -21,7 +21,7 @@
         <%
         String error = (String)request.getAttribute("error");
         ArrayList<BookVO> rs;
-        MemberVO nowMember = (MemberVO)session.getAttribute("Login");
+        MemberVO nowMember = (MemberVO)session.getAttribute("currentUser");
         if(nowMember == null){
         	request.setAttribute("error", "먼저 로그인해주세요.");
         	HttpUtil.forward(request, response, "/index.jsp");}
@@ -55,8 +55,8 @@
 						<td><%=book.getPublisher() %></td>
 						<td><%=book.getPublication_Day() %></td>
 						<td>		
-						<form action="bookBorrow.do" method="get">
-                        	<input type="hidden" name="num" value="<%=book.getNum()%>">
+						<form action="bookReturn.do" method="get">
+                        	<input type="hidden" name="bookNum" value="<%=book.getNum()%>">
    							<input type="submit" value="반납하기">
 						</form>
 						</td>
