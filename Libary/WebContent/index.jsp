@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="./css/common.css">
         <link rel="stylesheet" type="text/css" href="./css/index.css">
         <script src="./js/jquery.js"></script>
-        <title>회원 추가</title>
+        <title>로그인  | 도서관리 페이지</title>
     </head>
     <body>
         <section>

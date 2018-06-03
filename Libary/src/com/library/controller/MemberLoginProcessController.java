@@ -73,7 +73,9 @@ public class MemberLoginProcessController implements Controller{
 			}
 			s.setAttribute("Login",true);
 			s.setAttribute("currentUser",member);
-			HttpUtil.forward(req, res,"/user.jsp");
+			s.setAttribute("currentUser_Id",member.getEmail());
+			System.out.println("현재 overdue : " + member.getOverdue());
+			HttpUtil.forward(req, res,"/userMain.jsp");
 			return;
 		}
 		

@@ -17,7 +17,7 @@ public class JudgeOverdueController implements Controller{
 		// TODO Auto-generated method stub
 		HttpSession s = req.getSession();
 		BookService service = BookService.getInstance();
-		MemberVO member = (MemberVO) req.getAttribute("currentUser");
+		MemberVO member = (MemberVO) s.getAttribute("currentUser");
 		service.judgeOverdueService(member.getNum());
 		HttpUtil.forward(req, res, "/bookRental.jsp");
 	}

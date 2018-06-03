@@ -89,9 +89,21 @@
                     alert("비밀번호와 비밀번호 확인란이 일치하지 않습니다.");
                 }
                 else{
-                	document.getElementById('form').submit();
+                	if(validateEmail(document.getElementById("e-mail").value)){
+                		document.getElementById('form').submit();
+                	}
                 }
             }
+            
+            function validateEmail(email) {
+            	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            	if (email == '' || !re.test(email)) {
+            	alert("올바른 이메일 주소를 입력하세요")
+            	return false;
+            	}
+            	return true;
+            	}
+            
         </script>
     </body>
 </html>

@@ -1,13 +1,14 @@
 package com.library.dao;
 
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.library.Vo.BookVO;
 import com.library.Vo.MemberVO;
-
-import java.sql.PreparedStatement;
+import com.library.service.BookService;
 
 public class MemberDao {
  
@@ -170,9 +171,16 @@ public class MemberDao {
 	{
 		Connection conn = null;
 		PreparedStatement psmt = null;
+		BookService service = BookService.getInstance();
+		ArrayList<BookVO> borrowBooks = null; 
 		try
 		{
 			conn = connect();
+			borrowBooks = service.borrowBookListService(num);
+			for(BookVO book : borrowBooks)
+			{
+				service.bookReturnService(book.getNum(),num);
+			}
 			psmt = conn.prepareStatement("delete from member where num = ?");
 			psmt.setInt(1,num);
 			psmt.executeUpdate();
@@ -198,11 +206,11 @@ public class MemberDao {
 		try 
 		{
 			conn = connect();
-			psmt = conn.prepareStatement("select name,email,address,phone,pw,num from member");
+			psmt = conn.prepareStatement("select name,email,address,phone,pw,num,overdue from member");
 			rs = psmt.executeQuery();
 			while(rs.next())
 			{
-				member = new MemberVO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
+				member = new MemberVO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getInt(7));
 				list.add(member);
 			}
 		}
@@ -264,6 +272,30 @@ public class MemberDao {
 			psmt.setInt(1,1);
 			psmt.setInt(2,overdueDay);
 			psmt.setInt(3,num);
+			psmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			
+		}
+		finally
+		{
+			close(conn,psmt);
+		}
+	}
+	
+	public void MemberOverdueOff(int num)
+	{
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		BookService service = BookService.getInstance();
+		try
+		{
+			conn = connect();
+			psmt = conn.prepareStatement("update member set overdue = ?, overdue_Day = ? where num = ?");
+			psmt.setInt(1, 0);
+			psmt.setString(2, null);
+			psmt.setInt(3, num);
 			psmt.executeUpdate();
 		}
 		catch(Exception e)

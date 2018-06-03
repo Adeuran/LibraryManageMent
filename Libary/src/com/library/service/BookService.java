@@ -46,9 +46,9 @@ public class BookService {
 		return dao.BookList();
 	}
 	
-	public void bookReturnService(int num)
+	public void bookReturnService(int bookNum,int userNum)
 	{
-		dao.bookReturn(num);
+		dao.bookReturn(bookNum,userNum);
 	}
 	
 	public ArrayList<BookVO> borrowBookListService(int num)

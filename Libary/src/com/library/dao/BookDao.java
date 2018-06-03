@@ -1,7 +1,7 @@
 package com.library.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.library.Vo.BookVO;
 import com.library.Vo.MemberVO;
 import com.library.service.BookService;
+import com.library.service.MemberService;
 
 public class BookDao {
 
@@ -236,23 +237,37 @@ public class BookDao {
 		}
 	}
 	
-	public void bookReturn(int num)
+	public void bookReturn(int bookNum,int userNum)
 	{
 		Connection conn = null;
 		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		MemberService service = MemberService.serviceGetInstance();
+		
 		try
 		{
 			conn = connect();
+			/*psmt = conn.prepareStatement("select borrow_Idnum from book where num = ?");
+			psmt.setInt(1, bookNum);
+			rs = psmt.executeQuery();
+			userNum = rs.getInt(1);*/
 			psmt = conn.prepareStatement("update book set borrow = ?, borrow_Idnum = ?,borrow_Day = ? where num = ?");
 			psmt.setInt(1,0);
 			psmt.setInt(2,0);
 			psmt.setString(3,null);
-			psmt.setInt(4, num);
+			psmt.setInt(4, bookNum);
 			psmt.executeUpdate();
+			/*psmt = conn.prepareStatement("update member set overdue = ? where num = ?");
+			psmt.setInt(1, 0);
+			psmt.setInt(2, userNum);
+			psmt.executeUpdate();
+			judgeOverdue(userNum);*/
+			service.MemberOverdueOffService(userNum);
+			judgeOverdue(userNum);
 		}
 		catch(Exception e)
 		{
-			System.out.println("BookBorrow 오류 발생 :" + e);
+			System.out.println("BookR 오류 발생 :" + e);
 		}
 		
 		finally
@@ -307,14 +322,17 @@ public class BookDao {
 		BookService service = BookService.getInstance();
 		try
 		{
-			SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 			String inDate   = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date());
+			System.out.println("indate : " + inDate);
 			list = service.borrowBookListService(num);
 			conn = connect();
 			for(BookVO book : list)
 			{
-				Date borrowDate = (Date) format.parse(book.getBorrow_Day());
-				Date todayDate = (Date) format.parse(inDate);
+				Date borrowDate =  format.parse(book.getBorrow_Day());
+				System.out.println("borrowDate : " + borrowDate + "");
+				Date todayDate =  format.parse(inDate);
+				System.out.println("todayDate : " + todayDate + "");
 				
 				long calOverdue = (todayDate.getTime() - borrowDate.getTime()) / (24*60*60*1000) - 7;
 				System.out.println("지난 날짜 : " + calOverdue);

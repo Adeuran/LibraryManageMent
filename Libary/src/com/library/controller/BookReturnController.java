@@ -18,8 +18,10 @@ public class BookReturnController implements Controller{
 		HttpSession s = req.getSession();
 		BookService service = BookService.getInstance();
 		MemberVO member = (MemberVO) s.getAttribute("currentUser") ;
-		service.bookReturnService(member.getNum());
-		HttpUtil.forward(req, res, "/bookadd.jsp");
+		int bookNum = Integer.parseInt(req.getParameter("bookNum"));
+		int userNum = member.getNum();
+		service.bookReturnService(bookNum,userNum);
+		HttpUtil.forward(req, res, "/bookReturn.jsp");
 		return;
 	}
 

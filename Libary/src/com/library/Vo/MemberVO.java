@@ -29,6 +29,12 @@ public class MemberVO {
 		this(name,email,address,phone,pwd);
 		this.num = num;
 	}
+	
+	public MemberVO(String name, String email, String address, String phone, String pwd,int num,int overdue)
+	{
+		this(name,email,address,phone,pwd,num);
+		this.overdue = overdue;
+	}
 
 	public String getName() {
 		return name;

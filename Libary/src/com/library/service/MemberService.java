@@ -48,4 +48,9 @@ public class MemberService {
 	{
 		return dao.MemberLoginProcess(id);
 	}
+	
+	public void MemberOverdueOffService(int num)
+	{
+		dao.MemberOverdueOff(num);
+	}
 }
