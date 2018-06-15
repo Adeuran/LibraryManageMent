@@ -17,6 +17,7 @@
         	member = new String[]{mem.getName(),mem.getEmail(),mem.getAddress(),mem.getPhone(),mem.getPwd(),String.valueOf(mem.getNum())};
         	readOnly = "readonly";
         	sendTo = "memberUpdate.do";
+        	
         }
         else {
         	mode = "회원 추가";
