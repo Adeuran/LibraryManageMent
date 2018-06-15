@@ -57,6 +57,7 @@
                     <%}%>
                 </div>
                 <div id="buttonDiv">
+                <span>계정이 없으시다면? <a href="register.jsp">계정 만들기</a></span>
                    <input type="submit" value="로그인" id="LoginButton">
                 </div>
             </form>
